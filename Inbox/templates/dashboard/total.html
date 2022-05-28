@@ -1,0 +1,14 @@
+  {% extends 'dashboard/baseDash.html' %}
+
+  <!-- Block Icon  -->
+  {% block icon %}
+    <i class="fas fa-envelope-open-text fa-3x"></i>
+  {% endblock icon %}
+
+  <!-- Block Value  -->
+  {% block value %}{{ total }}{% endblock value %}
+
+  <!-- Block Title  -->
+  {% block dash-title %}
+    ОБЩИЕ
+  {% endblock dash-title %}

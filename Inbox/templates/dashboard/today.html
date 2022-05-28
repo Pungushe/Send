@@ -1,0 +1,14 @@
+  {% extends 'dashboard/baseDash.html' %}
+
+  <!-- Block Icon  -->
+  {% block icon %}
+    <i class="fas fa-bell fa-3x"></i>
+  {% endblock icon %}
+
+  <!-- Block Value  -->
+  {% block value %}{{ today.count }}{% endblock value %}
+
+  <!-- Block Title  -->
+  {% block dash-title %}
+    СЕГОДНЯШНИЕ
+  {% endblock dash-title %}

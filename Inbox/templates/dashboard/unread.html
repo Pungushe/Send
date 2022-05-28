@@ -1,0 +1,14 @@
+  {% extends 'dashboard/baseDash.html' %}
+
+  <!-- Block Icon  -->
+  {% block icon %}
+    <i class="fas fa-mail-bulk fa-3x"></i>
+  {% endblock icon %}
+
+  <!-- Block Value  -->
+  {% block value %}{{ pending.count }}{% endblock value %}
+
+  <!-- Block Title  -->
+  {% block dash-title %}
+    НЕПРОЧИТАННЫЕ
+  {% endblock dash-title %}

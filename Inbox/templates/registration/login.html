@@ -1,0 +1,39 @@
+  {% extends 'base.html' %}
+
+  <!-- Title -->
+  {% block title %}Логин{% endblock title %}
+
+  <!-- autologout -->
+  {% block auto-logout %}{% endblock auto-logout %}
+
+  <!-- Block sidebar content  -->
+  {% block sidebar-content %}
+  <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+  {% endblock sidebar-content %}
+
+  <!-- Page content -->
+  {% block content %}
+    <div class="container mt-5" id="login">
+      <div class="card p-3 login-order">
+        <span class="text-center mt-3 text-pulse"><strong>ОГРАНИЧЕННЫЙ ДОСТУП </strong></span>
+        <form method="POST" autocomplete="off">
+          {% csrf_token %}
+          <div class="input-group mb-2 mt-4">
+            <input type="text" class="form-control" name="username" placeholder="Имя пользовтеля">
+          </div>
+          <div class="input-group mb-2">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Пароль">
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" onclick="myFunction()" type="checkbox" style="float: right;">
+          </div>
+          <div class="d-grid gap-2 mt-3">
+            <input class="btn btn-success btn-sm mt-4 mb-3" type="submit" value="Ввод" id="btn-enter">
+          </div>
+        </form>
+        <center class="mt-5 mb-5">
+          <i class="bx bxs-send bx-rotate-270 mt-2 mb-2" style="color: #d3d3d3; font-size: 150px; margin-left: 10px;"></i>
+        </center>
+      </div>
+    </div> <!-- Заканчивается //контейнер -->
+  {% endblock %}

@@ -1,0 +1,276 @@
+/*==================
+  # НАЧАЛО КОНФИГУРАЦИИ
+===================== */
+  html,
+  body{
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+/*==================
+  # FOOTER
+===================== */
+  .wrapper{
+    min-height: 100%;
+    margin-bottom: -50px;
+  }
+  #footer,
+  .push{
+    height: 50px;
+  }
+
+/* ==================
+  # NAVBAR
+===================== */
+   #btn-nav{
+     float: right;
+     margin-right: 15px;
+     cursor: pointer;
+   }
+
+/* ==================
+  # ЛОГИН
+===================== */
+  #login{
+    width: 450px;
+  }
+
+  .login-order{
+    border-top: .4rem solid #198754;
+    border-bottom: .4rem solid #198754;
+    border-radius: 10px;
+  }
+
+  #btn-enter{
+    border-radius: 15px;
+    font-size: 16px;
+  }
+
+/* ==================
+  # ДРУГИЕ
+===================== */
+  .btn-modal {
+    width: 70px;
+  }
+
+  .btn-action {
+    width: 45px;
+  }
+
+  #input-bg{
+    background-color: #fff;
+  }
+
+  #btn-back{
+    width: 50px;
+    float:left;
+    font-size: 22px;
+    border-radius: 0px;
+  }
+
+  #reply{
+    width: 110px;
+    float:left;
+    margin-left: 5px;
+    background-color: #2e856e;
+    border-radius: 0px;
+  }
+
+  .side-lable{
+    width: 45px;
+    font-size: 15px;
+  }
+
+  #paper-clip{
+    text-decoration: none;
+  }
+
+  /* ==================
+  # ЕСЛИ НЕТ СООБЩЕНИЙ
+  ===================== */
+
+  #msg {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+  }
+
+  #refresh {
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #111;
+  }
+
+  #refresh:hover {
+    color: #198754;
+  }
+
+/* ==================
+  # ЭФФЕКТ ВЫВОДА (JS)
+===================== */
+   .block-position {
+     width: 80%;
+     position: absolute;
+     top: 30%;
+     left: 65%;
+     margin-right: -50%;
+     transform: translate(-50%, -50%);
+     text-align: center;
+   }
+
+/* ==================
+  # СООБЩЕНИЕ
+===================== */
+   .pulse {
+     width: 65px;
+     height: 65px;
+     border-radius: 50%;
+     position: fixed;
+     right: 30px;
+     bottom: 75px;
+     animation: animate 3s linear infinite;
+   }
+
+   @keyframes animate {
+     0% {box-shadow: 0 0 0 0 rgba(1, 152, 117, .7), 0 0 0 0 rgba(1, 152, 177, .7);}
+     40% {box-shadow: 0 0 0 30px rgba(255, 109, 74, 0), 0 0 0 0 rgba(1, 152, 117, .7);}
+     80% {box-shadow: 0 0 0 50px rgba(255, 109, 74, 0), 0 0 0 30px rgba(255, 109, 74, 0);}
+     100% {box-shadow: 0 0 0 0 rgba(255, 109, 74, 0), 0 0 0 30px rgba(255, 109, 74, 0);}
+   }
+
+/* ===============
+  # SWEETALERT
+================= */
+
+/* Весь текст */
+.swal-text{
+  text-align: center;
+}
+
+/* Иконки */
+/*==================
+# FOOTER
+===================== */
+.swal-icon--success:before,
+.swal-icon--success:after,
+.swal--icon-success__hide-corners {
+    background: none!important;
+  }
+
+  .swal-icon--success{
+    /* цвет окружности */
+    border-color: #198754;
+  }
+
+  .swal-icon--success_line{
+    /* Анимация */
+    border-color: #198754;
+  }
+
+  /* Кнопка */
+  .swal-button{
+    padding: 7px 10px;
+    border-radius: 5px;
+    background-color: #111;
+    font-size: 12px;
+    border: 1px solid #111;
+  }
+
+  .swal-button:focus{
+    box-shadow: none;
+  }
+
+  .swal-button:not([disabled]):hover{
+    background:transparent;
+    color: #111;
+    border: 1px solid #111;
+  }
+
+  /*===============
+    # BOOTSTRAP
+  ================= */
+  .form-control:focus{
+    border-color: green;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  /* Checkbox green тема  */
+  .form-check-input:checked {
+    background-color: #8abaae;
+    border: green;
+    box-shadow: 0 0 8px rgba(1, 152, 117, 0.4) !important;
+  }
+  .form-check-input {
+    border: green !important;
+    box-shadow: 0 0 8px rgba(1, 152, 117, 0.4) !important;
+  }
+  .form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='grey'/%3e%3c/svg%3e");
+  }
+
+  /*===============
+    # Пагинация
+  ================= */
+  .page-item.active.page-link{
+    columns: #fff;
+    background-color: #6c757d;
+    border:1px solid #6c757d;
+  }
+
+  .pagination > li > a {
+    background-color: #fff;
+    color: #6c757d;
+  }
+
+  .pagination > li > a:focus,
+  .pagination > li > a:hover,
+  .pagination > span > a:focus,
+  .pagination > span > a:hover {
+    color: #111;
+    background-color: #d3d3d3;
+    border: 1px solid #6c757d;
+    box-shadow: none;
+  }
+
+  /*==================
+  # AJAX SPINNER
+  ===================== */
+  #bg-spinner {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    display: none;
+    background: rgba(1, 1, 1, 0.7)
+  }
+
+  #position-spinner {
+    display: fixed;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #spinner {
+    height: 60%;
+    width: 60%;
+    border-radius: 50%;
+    border: 6px solid #d3d3d3;
+    border-top: 6px solid #198754;
+    animation: loading 1s infinite linear;
+  }
+  @keyframes loading {
+    to {
+      transform: rotate(360deg);
+    }
+  }

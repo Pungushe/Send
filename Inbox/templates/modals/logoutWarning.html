@@ -1,0 +1,35 @@
+   {% extends "modals/base_modal.html" %}
+
+   <!-- Modal ID  -->
+   {%  block modal-id %}id="warningModal"{% endblock modal-id %}
+
+   <!-- Modal Title  -->
+   {%  block modal-title %}
+    <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Внимание
+   {% endblock modal-title %}
+
+   <!-- Modal Body  -->
+   {% block modal-body %}
+     <div class="text-center text-secondary" >
+       <span class="fa-stack fa-3x">
+         <i class="fas fa-cloud fa-stack-2x"></i>
+         <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+       </span>
+     </div>
+     <div class="mt-3">
+       <span>Система выйдет через 5 минут...</span>
+         <div class="container note-warning">Предупреждение ! Если вы хотите остаться еще на 30 минут, нажмите на
+         <br>
+         <span class="text-success"><strong>+30 мин</strong></span> кнопка ниже
+       </div>
+     </div>
+     {% endblock modal-body %}
+
+     <!-- Modal Footer  -->
+     {% block modal-footer %}
+       <a onclick="window.location.reload();" class="btn btn-outline-dark btn-sm" id="btn-30m">+30 мин</a>
+       <button id="btn-ok-logout" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Все в порядке</button>
+     {% endblock modal-footer %}
+
+     <!-- Кнопка закрытия  -->
+     {% block close %}{% endblock close %}

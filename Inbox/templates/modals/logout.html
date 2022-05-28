@@ -1,0 +1,21 @@
+   {% extends "modals/base_modal.html" %}
+
+   <!-- Modal ID  -->
+   {% block modal-id %}id="logoutModal"{% endblock modal-id %}
+
+   <!-- Modal Title  -->
+   {% block modal-title %}
+    <i class="fas fa-door-open"></i>&nbsp;&nbsp;Выход из системы
+   {% endblock modal-title %}
+
+   <!-- Modal Body  -->
+   {% block modal-body %}
+    <br>
+    <span class="text-danger"><i class="fas fa-door-open fa-3x"></i></span>
+    <div class="text-danger mb-3 mt-4"> Уверены что хотите выйти из системы</div>
+   {% endblock modal-body %}
+
+   <!-- Modal Footer  -->
+   {%  block modal-footer %}
+      <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm">Выход</a>
+   {% endblock modal-footer %}

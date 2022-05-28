@@ -1,0 +1,97 @@
+  {% extends 'base.html' %}
+
+  <!-- Title -->
+  {% block title %}Покупатель{% endblock title %}
+
+  <!-- Block navbar content -->
+  {% block nav-content %}
+    <i class="fas fa-user-alt"></i>&nbsp;&nbsp;<span style="font-size: 16px;">{{ customer.name }}</span>
+  {% endblock nav-content %}
+  <!-- Block sidebar content -->
+  {% block sidebar-content %}
+  <center>
+    <!-- Приглашение пользователя -->
+    Добро пожаловать: <span class="text-success">{{ user.get_username }}</span>
+    <br><br>
+  </center>
+    <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#logoutModal">Выход из системы</a>
+    <a href="{% url 'admin:index' %}" target="_blank" class="btn btn-outline-success btn-sm">Административная панель</a>
+  {% endblock sidebar-content %}
+
+  <!-- Page content -->
+  {% block content %}
+    <div class="container">
+      <div class="card text-center mt-3">
+        <div class="card-header">
+          Полученные: {{ customer.created_at | date:'m/d/Y' }} at {{ customer.created_at | date:'H:i' }}
+        </div>
+      <div class="card-body">
+        <form method="POST" action="/mark_message" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <!-- Скрывать ID -->
+          <input type="hidden" value="{{ customer.id }}" name="id">
+            <div class="input-group mb-2">
+              <span class="input-group-text justify-content-center side-lable"><i class="fas fa-phone-alt"></i></span>
+              <input type="text" id="input-bg" class="form-control" value="{{ customer.phone }}" readonly>
+            </div>
+            <div class="input-group mb-2">
+              <span class="input-group-text justify-content-center side-lable"><i class="fas fa-envelope"></i></span>
+              <input id="input-bg" class="form-control" value="{{ customer.email }}" readonly>
+            </div>
+            <div class="input-group mb-2">
+              <span class="input-group-text justify-content-center side-lable"><i class="fas fa-user-edit"></i></span>
+              <input id="input-bg" class="form-control" value="{{ customer.subject }}" readonly>
+            </div>
+            <div class="form-group mb-2">
+              <textarea class="form-control" id="input-bg" rows="10" readonly>{{ customer.message }}</textarea>
+            </div>
+            <div class="input-group mb-3 mt-3">
+              <a id="paper-clip" class="bg-dark text-light input-group-text justify-content-center side-lable" href="/media/{{ customer.file }}" target="_blank">
+                <i class="fas fa-paperclip"></i>
+              </a>
+              {% if customer.file == '' %}
+              <input class="form-control" id="input-bg" value="Нет прилогаемых файлов" readonly>
+              {% else %}
+              <input class="form-control" id="input-bg" value="{{ customer.file }}" readonly>
+              {% endif %}
+            </div>
+
+            <!-- Ведет к бэку -->
+            {% if customer.status == 'Ожидаемые' %}
+            <input type="text" class="form-control" name="status" value="Прочитанные">
+            {% endif %}
+
+            <!-- Включая Mark Modal -->
+            {% include 'modals/mark.html' %}
+
+            </form>
+            {% if customer.status == 'Ожидаемые' %}
+            <a id="btn-back" class="btn btn-dark" title="Назад" data-bs-toggle="modal" data-bs-target="#markModal">
+            {% else %}
+            <a href="{% url 'inbox' %}" id="btn-back" class="btn btn-dark" title="Назад">
+            {% endif %}
+            <i class="fas fa-arrow-left"></i>
+            </a>
+            <a class="btn text-light" id="reply" title="Email отклик" data-bs-toggle="modal" data-bs-target="#replyModal">
+              <i class="fas fa-reply"></i>&nbsp;&nbsp;<span> Отклик</span>
+            </a>
+        </div>
+      </div>
+    </div>
+
+  <!-- Ajax Spinner -->
+  {% comment %} <div class="bg-spinner">
+    <div id="position-spinner">
+      <span id="spinner"></span>
+    </div>
+  </div> {% endcomment %}
+
+  <!-- Только на этой странице -->
+  {% comment %} <script>
+    history.pushState(null, null, null);
+    window.addEventListener("popstate", function() {
+      history.pushState(null, null, null);
+    })
+  </script> {% endcomment %}
+  {% endblock content %}

@@ -1,0 +1,14 @@
+  {% extends 'dashboard/baseDash.html' %}
+
+  <!-- Block Icon  -->
+  {% block icon %}
+    <i class="fas fa-envelope-open fa-3x"></i>
+  {% endblock icon %}
+
+  <!-- Block Value  -->
+  {% block value %}{{ read.count }}{% endblock value %}
+
+  <!-- Block Title  -->
+  {% block dash-title %}
+    ПРОЧИТАННЫЕ
+  {% endblock dash-title %}

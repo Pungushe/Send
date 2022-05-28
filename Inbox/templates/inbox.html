@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+  <!-- Title -->
+  {% block title %}Inbox{% endblock title %}
+
+  <!-- Block Image  -->
+  {% block image %}{% endblock image %}
+
+  <!-- Block Typed  -->
+  {% block typed %}{% endblock typed %}
+
+  <!-- Block navbar content -->
+  {% block nav-content %}
+    <i class="fas fa-envelope" style="color: #8abaae;"></i>&nbsp;&nbsp; Inbox
+  {% endblock nav-content %}
+
+  <!-- Дата и время -->
+  {% block datatime %}
+    <div class="text-light" id="desk-datatime" style="font-size: 12px; margin-top: 5px;">{% now "l(m/d/Y)" %}&nbsp;
+      <span style="color: #8abaae; font-weight: bold" id="clock"></span>
+    </div>
+  {% endblock datatime %}
+
+  <!-- Block sidebar content -->
+  {% block sidebar-content %}
+  <center>
+    <!-- Приглашение пользователя -->
+    Добро пожаловать: <span class="text-success">{{ user.get_username }}</span>
+    <br><br>
+  </center>
+    <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#logoutModal">Выход из системы</a>
+    <a href="{% url 'admin:index' %}" target="_blank" class="btn btn-outline-success btn-sm">Административная панель</a>
+  {% endblock sidebar-content %}
+
+  <!-- Page content -->
+  {% block content %}
+  <br>
+    <div class="container-fluid mt-3" style = "width: 90%;">
+
+      <!-- Dashboard  -->
+      <div class="hide">
+        {% include 'dashboard/dashboard.html' %}
+      </div>
+
+    <!-- Поиск  -->
+    <form class="hide">
+      <div class="input-group input-group-sm mb-3">
+        <input name="q" type="text" class="form-control input-sm" placeholder="Поиск по..." value="{{ request.GET.q }}">
+        <button class="btn btn-secondary" title="Поиск"><i class="fas fa-search"></i></button>
+        <a href="{% url 'inbox' %}" class="btn btn-dark" style="margin-left:2px;" title="Обновить"><i class="fas fa-sync-alt fa-2x"></i></a>
+      </div>
+    </form>
+
+    <!-- Таблица сообщенй  -->
+      <div class="col-lg-12 hide">
+        <div style="margin-top:5px;">
+          <table class="table table-sm">
+            <thead class="table-secondary">
+              <tr>
+                <th style="width: 18%;">Имя</th>
+                <th style="width: 13%;">Телефон</th>
+                <th style="width: 18%;">Email</th>
+                <th style="width: 18%;">Тема</th>
+                <th style="width: 15%;">Полученные</th>
+                <th style="width: 10%;">Статус</th>
+                <th style="width: 8%; text-align:center;" colspan="2">Действия</th>
+              </tr>
+            </thead>
+
+            <!-- Данные с бэка  -->
+            {% for customer in customers %}
+            <tr id="chk_td ">
+              <td>{{ customer.name }}</td>
+              <td>{{ customer.phone }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.subject }}</td>
+              <td>{{ customer.created_at | date:'m/d/y (H:i)' }}</td>
+
+              {% if customer.status == 'Ожидаемые' %}
+              <td class="text-danger">{{ customer.status }}</td>
+              {% else %}
+              <td>{{ customer.status }}</td>
+              {% endif %}
+
+              <td>
+                <a href="/customer/{{customer.id}}" class="btn text-light btn-sm btn-action" style="background-color: #2e856e;" title="Прочитать сообщение" >
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </td>
+              <td>
+                <button class="btn btn-secondary btn-sm btn-action" title="Удалить сообщение" data-bs-toggle="modal" data-bs-target="#deleteModal{{ customer.pk }}" >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+            <!-- Включая Models Delete  -->
+            {% include 'modals/delete.html' %}
+
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+
+    <!-- Пагинация  -->
+    <nav>
+      {% if customers.has_other_pages %}
+      <ul class="pagination">
+        {% if customers.has_previous %}
+        <a href="?page=1" class="btn btn-outline-secondary mb-3" style="border-radius: 1px; border: 1px solid #d3d3d3;">Первая</a>
+        <li class="page-item"><a class="page-link" href="?page={{  customers.previous_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
+        {% else %}
+        <li class="page-item-disabled"></li>
+        {% endif %}
+
+        {% for i in customers.paginator.page_range %}
+        {% if customers.number == i %}
+        <li class="page-item-active"><span class="page-link"> {{ i }} <span class="cr-only"></span></span></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if customers.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ customers.next_page_number }}"><i class="fas fa-angle-double-right"></i></a></li>
+        <a href="?page={{ customers.paginator.num_page }}" class="btn btn-outline-secondary mb-3" style="border-radius: 1px; border: 1px solid #d3d3d3;
+           border-left: none;">Последняя</a>
+        {% else %}
+        <li class="page-item-disabled"></li>
+        {% endif %}
+      </ul>
+      {% endif %}
+    </nav>
+
+  </div> <!-- END//container -->
+
+  <!-- Если нет сообщений показать этот контент  -->
+  <span class="text-danger" id="msg"></span>
+
+  {% endblock %}

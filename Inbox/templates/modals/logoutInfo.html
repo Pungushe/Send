@@ -1,0 +1,26 @@
+   {% extends "modals/base_modal.html" %}
+
+   <!-- Modal ID  -->
+   {%  block modal-id %}id="infoModal"{% endblock modal-id %}
+
+   <!-- Modal Title  -->
+   {%  block modal-title %}
+    <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Информативный
+   {% endblock modal-title %}
+
+   <!-- Modal Body  -->
+   {% block modal-body %}
+     <div class="text-center" style="color: #5ca08a">
+       <span class="fa-stack fa-3x">
+         <i class="fas fa-cloud fa-stack-2x"></i>
+         <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+       </span>
+     </div>
+     <div class="mt-3">
+       <span class="text-success">Сейчас ваш аккаунт защищен</span>
+       <br>
+       <span class="note-info">Для вашай безопасности, в системе предусмотрен автоматический выход</span>
+       <br class=" mb-3 mt-3">
+     </div>
+
+   {% endblock modal-body %}

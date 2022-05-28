@@ -1,0 +1,30 @@
+   {% extends "modals/base_modal.html" %}
+
+    <!-- Modal ID  -->
+    {%  block modal-id %}id="markModal"{% endblock modal-id %}
+
+   <!-- Modal Title  -->
+   {%  block modal-title %}
+    <i class="fas fa-door-open"></i>&nbsp;&nbsp; Отмечено ка прочитано
+   {% endblock modal-title %}
+
+   <!-- Modal Body  -->
+   {%  block modal-body %}
+     <div class="text-center mt-2 mb-3" style="color: #2e856e;">
+       <span class="fa-stack fa-3x">
+         <i class="fas fa-cloud fa-stack-2x"></i>
+         <i class="fas fa-user-check fa-stack-1x fa-inverse"></i>
+       </span>
+     </div>
+     Хотите отметить сообщение как прочитанное
+     <br class="mb-2">
+   {% endblock modal-body %}
+
+   <!-- Modal Footer  -->
+   {%  block modal-footer %}
+      <a href="{% url 'inbox' %}" class="btn btn-outline-dark btn-sm btn-modal">Нет</a>
+      <button class="btn text-light btn-sm btn-modal" style="background-color: #2e856e;">Да</button>
+   {% endblock modal-footer %}
+
+   <!-- Кнопка отклонение  -->
+   {% block close %}{% endblock close %}

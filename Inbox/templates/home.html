@@ -1,0 +1,22 @@
+  {% extends 'base.html' %}
+
+  <!-- autologout -->
+  {% block auto-logout %}
+  {% endblock auto-logout %}
+
+  <!-- Page content -->
+  {% block content %}
+  <!-- Эффект вывода -->
+  <div class="block-position">
+    <h1 class="text-light typed-text"> Мы
+      <span id="element" style="color:#8abaae;"></span>
+    </h1>
+  </div>
+
+  <!-- Сообщение -->
+  <div>
+    <button style="background-color: #5ca08e;" class="btn text-light pulse" data-bs-toggle="modal" data-bs-target="#messageModal">
+      <i class="fas fa-envelope fa-2x"></i>
+    </button>
+  </div>
+  {% endblock content %}

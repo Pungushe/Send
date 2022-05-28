@@ -1,0 +1,59 @@
+   {% extends "modals/base_modal.html" %}
+
+    <!-- Modal ID  -->
+    {%  block modal-id %}id="messageModal"{% endblock modal-id %}
+
+    <!-- Modal XL  -->
+    {% block modal-width %}modal-xl{% endblock modal-width %}
+
+   <!-- Modal Title  -->
+   {%  block modal-title %}
+    <i class="fas fa-envelope"></i>&nbsp;&nbsp; Message
+   {% endblock modal-title %}
+
+   <!-- Form  -->
+   {%  block form %}
+   <form method="POST" action="/send_message" autocomplete="off" class="was-validated" enctype="multipart/form-data">
+       {% csrf_token %}
+     <div class="modal-body">
+       <div class="mb-1">
+         <input type="text" class="form-control" name="name" maxlength="40" placeholder="Имя" required>
+       </div>
+       <div class="mb-1">
+         <input type="text" class="form-control phone" name= "phone" placeholder="Телефон" required>
+       </div>
+       <div class="mb-1">
+         <input type="email" class="form-control" name="email" maxlength="40" placeholder="Email" required>
+       </div>
+       <div class="mb-1">
+         <input type="text" class="form-control" name="subject" maxlength="25" placeholder="Тематика" required>
+       </div>
+       <hr>
+       <div class="form-group mb-2">
+         <textarea class="form-control" name="message" id="message" rows="10" maxlength="1000" required placeholder="Ваше сообщение..."></textarea>
+       </div>
+
+       <!-- Cчетчик оставшихся символов -->
+       <span id="remaining"></span>
+       <hr>
+       <div class="form-group mb-2">
+         <input class="form-control" type="file" name="file" id="file">
+       </div>
+       <h6 class="text-danger" style="font-size:12px;"> Для более одного файла использовать:
+         <strong class="text-success"> rar </strong> или <strong class="text-success"> zip </strong>
+       </h6>
+       <hr>
+       <div class="d-grid gap-2 mt-3">
+         <button class="btn-text-light" type="submit" style="background-color:#2e856e;">Отправить сообщение&nbsp;&nbsp;
+           <i class="fas fa-paper-plane"></i>
+         </button>
+       </div>
+     </div>
+
+     <!-- Скрыть Input -->
+     <input type="hidden" value="Ожидаемые" name="status">
+   </form>
+   {% endblock form %}
+
+   <!-- Блок Close -->
+   {% block close %}{% endblock close %}
